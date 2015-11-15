@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from settings import KYIV, TZ, URL_MASK, API_KEY, DB, KHERSON, CPH
+from settings import KYIV, TZ, URL_MASK, FORECAST_API_KEY, DB, KHERSON, CPH
 
 __author__ = 'Sergey Smirnov <smirnoffs@gmail.com>'
 
@@ -25,7 +25,7 @@ def _join_coords(coords):
 
 def get_forecast(coords=KYIV, time=_prepare_time()):
     lat, lon = coords
-    url = URL_MASK.format(key=API_KEY, lat=lat, lon=lon, time=time)
+    url = URL_MASK.format(key=FORECAST_API_KEY, lat=lat, lon=lon, time=time)
     resp = requests.get(url)
     if resp.status_code == 200:
         return resp.content, coords, time
